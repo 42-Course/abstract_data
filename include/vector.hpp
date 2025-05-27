@@ -1,3 +1,4 @@
+// https://cplusplus.com/reference/vector/vector/
 #ifndef FT_VECTOR_HPP
 #define FT_VECTOR_HPP
 
@@ -221,8 +222,6 @@ public:
       _size += n;
   }
 
-
-
   iterator erase(iterator position) {
     size_type index = position - begin();
     _alloc.destroy(_data + index);
@@ -252,7 +251,7 @@ public:
 
     _size -= count;
     return iterator(_data + start);
-}
+  }
 
 
   void push_back(const value_type& val) {

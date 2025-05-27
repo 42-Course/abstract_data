@@ -18,7 +18,7 @@ BIN_BENCH       := vector_benchmark.out
 
 # Directories and sources
 SRC_DIR         := src
-SRC_COMMON      := $(SRC_DIR)/main.cpp $(SRC_DIR)/test_vector.cpp
+SRC_COMMON      := $(SRC_DIR)/main.cpp $(SRC_DIR)/test_vector.cpp $(SRC_DIR)/test_list.cpp
 SRC_BENCH       := $(SRC_DIR)/benchmark_vector.cpp
 
 # Python setup

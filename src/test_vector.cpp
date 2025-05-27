@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <cassert>
-#include <vector>
 #ifdef MODE_FT
     #include "vector.hpp"
     namespace ns = ft;
