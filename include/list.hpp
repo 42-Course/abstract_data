@@ -159,8 +159,10 @@ public:
   template <class InputIterator>
   void insert(iterator pos, InputIterator first, InputIterator last,
               typename ft::enable_if<!std::numeric_limits<InputIterator>::is_specialized>::type* = 0) {
-    while (first != last)
-      insert(pos, *first++);
+    list tmp;
+    for (; first != last; ++first)
+      tmp.push_back(*first);
+    splice(pos, tmp);
   }
 
   iterator erase(iterator pos) {
@@ -359,39 +361,48 @@ public:
     swap(counter[fill - 1]);
   }
 
-
   void splice(iterator pos, list& other) {
+    if (this == &other || other.empty())
+      return;
     splice(pos, other, other.begin(), other.end());
   }
 
+  // Transfer single element from another list
   void splice(iterator pos, list& other, iterator it) {
     iterator next = it;
     ++next;
+    if (pos == it || pos == next)
+      return;
     splice(pos, other, it, next);
   }
 
   void splice(iterator pos, list& other, iterator first, iterator last) {
     if (first == last)
       return;
+
     size_type count = 0;
     for (iterator it = first; it != last; ++it)
       ++count;
 
-    node_type* before = pos.base()->prev;
-    node_type* after = pos.base();
     node_type* first_node = first.base();
     node_type* last_node = last.base();
+    node_type* before = pos.base()->prev;
+    node_type* after = pos.base();
 
-    before->next = first_node;
+    // Disconnect from 'other'
     first_node->prev->next = last_node;
+    last_node->prev->next = after;
+    after->prev->next = first_node;
+
+    node_type* old_last = last_node->prev;
     last_node->prev = first_node->prev;
     first_node->prev = before;
-    after->prev = last_node->prev;
-    last_node->prev->next = after;
+    after->prev = old_last;
 
     _size += count;
     other._size -= count;
   }
+
 };
 
 // Non-member swap
