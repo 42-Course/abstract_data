@@ -7,6 +7,7 @@
 #include "iterators/list_iterator.hpp"
 #include "utils/list_node.hpp"
 #include "utils/enable_if.hpp"
+#include "utils/swap.hpp"
 #include <limits>
 
 namespace ft {
@@ -191,10 +192,10 @@ public:
   }
 
   void swap(list& other) {
-    std::swap(_head, other._head);
-    std::swap(_tail, other._tail);
-    std::swap(_size, other._size);
-    std::swap(_alloc, other._alloc);
+    ft::swap(_head, other._head);
+    ft::swap(_tail, other._tail);
+    ft::swap(_size, other._size);
+    ft::swap(_alloc, other._alloc);
   }
 
   void assign(size_type n, const value_type& val) {
@@ -271,10 +272,10 @@ public:
       return;
     node_type* curr = _head;
     while (curr) {
-      std::swap(curr->next, curr->prev);
+      ft::swap(curr->next, curr->prev);
       curr = curr->prev;
     }
-    std::swap(_head, _tail);
+    ft::swap(_head, _tail);
   }
 
   void merge(list& other) {
@@ -325,7 +326,7 @@ public:
         iterator k = j;
         --k;
         if (*j < *k) {
-          std::swap(*j, *k);
+          ft::swap(*j, *k);
         } else {
           break;
         }
