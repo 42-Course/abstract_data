@@ -6,7 +6,7 @@
 CXX             := c++
 CXXFLAGS        := -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 CXXFLAGS_DEBUG  := $(CXXFLAGS) -g -DDEBUG
-CXXFLAGS_BENCH  := -Wall -Wextra -Werror -std=c++11
+CXXFLAGS_BENCH  := -w -O3 -std=c++11
 
 INCLUDES        := -Iinclude
 
@@ -14,12 +14,12 @@ INCLUDES        := -Iinclude
 BIN_FT          := ft_containers.out
 BIN_STD         := std_containers.out
 BIN_DEBUG       := debug.out
-BIN_BENCH       := vector_benchmark.out
+BIN_BENCH       := benchmark.out
 
 # Directories and sources
 SRC_DIR         := src
 SRC_COMMON      := $(SRC_DIR)/main.cpp $(SRC_DIR)/test_vector.cpp $(SRC_DIR)/test_list.cpp
-SRC_BENCH       := $(SRC_DIR)/benchmark_vector.cpp
+SRC_BENCH       := $(SRC_DIR)/benchmark/main.cpp
 
 # Python setup
 VENV_DIR := .venv
@@ -90,7 +90,7 @@ clean:
 
 fclean:
 	@echo "Removing binaries..."
-	rm -f $(BIN_FT) $(BIN_STD) $(BIN_DEBUG) $(BIN_BENCH) benchmark_results.csv
+	rm -f $(BIN_FT) $(BIN_STD) $(BIN_DEBUG) $(BIN_BENCH) benchmark_*.csv
 
 re: fclean all
 
