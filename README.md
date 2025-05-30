@@ -155,6 +155,6 @@ But when you're *defining* the iterator class itself — **don't use `iterator_t
 
 ---
 
-```
-
----
+Links:
+  
+> https://www.youtube.com/watch?v=g9wTzeq0Y-g
